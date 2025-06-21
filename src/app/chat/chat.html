@@ -1,0 +1,30 @@
+<div class="container mt-4 mb-2 outer-div">
+  <div class="chat-ui">
+    <div class="chat-header">
+      <div class="chat-brand">
+        <button class="back-btn"><i class="bi bi-arrow-left"></i></button>
+        <div>
+          <h2 class="chat-title">Hi there, <span class="name">Sam</span></h2>
+          <p class="chat-subtitle">How can I <strong>help you today?</strong></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-2 mb-2 chat-messages">
+      <div *ngFor="let message of messages" class="message" [ngClass]="message.sender + '-message'">
+        <i class="bi" [ngClass]="message.sender === 'user' ? 'bi-person' : 'bi-robot'"></i>
+        <div class="text">{{ message.text }}</div>
+      </div>
+
+      <div *ngIf="isLoading" class="message bot-message">
+        <i class="bi bi-robot"></i>
+        <div class="text">Thinking<span class="dots">...</span></div>
+      </div>
+    </div>
+
+    <form class="mb-2 mx-2 chat-input" (ngSubmit)="sendMessage()">
+      <input type="text" [(ngModel)]="userInput" name="chatInput" placeholder="Type something cute and clever..." />
+      <button type="submit" class="send-btn"><i class="bi bi-send-fill"></i></button>
+    </form>
+  </div>
+</div>
