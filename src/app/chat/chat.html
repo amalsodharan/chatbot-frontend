@@ -2,7 +2,7 @@
   <div class="chat-ui">
     <div class="chat-header">
       <div class="chat-brand">
-        <button class="back-btn"><i class="bi bi-arrow-left"></i></button>
+        <button class="back-btn" (click)="goHome()"><i class="bi bi-arrow-left"></i></button>
         <div>
           <h2 class="chat-title">Hi there, <span class="name">Sam</span></h2>
           <p class="chat-subtitle">How can I <strong>help you today?</strong></p>
@@ -10,14 +10,23 @@
       </div>
     </div>
 
-    <div class="mt-2 mb-2 chat-messages">
+    <div *ngIf="defaultScreen" class="d-flex flex-column justify-content-center align-items-center vh-100 text-center">
+      <img src="assets/ollieBot.png" alt="logo" style="width: 148px;">
+      <p class="text-muted fs-5 font-italic">
+        Experience fast, personalized, and secure conversations with our AI-driven chat assistant <br>
+        designed for work, personal tasks, and beyond.
+      </p>
+    </div>
+
+
+    <div #chatContainer class="mt-2 mb-2 chat-messages">
       <div *ngFor="let message of messages" class="message" [ngClass]="message.sender + '-message'">
-        <i class="bi" [ngClass]="message.sender === 'user' ? 'bi-person' : 'bi-robot'"></i>
-        <div class="text">{{ message.text }}</div>
+        <img [src]="message.sender === 'user' ? 'assets/user.png' : 'assets/ollieBot.png'" alt="avatar" class="avatar" />
+        <div class="text"  [innerHTML]="message.text" [style]="message.sender === 'user' ? 'color: #FFFFFF' : 'color: #9f59ff'"></div>
       </div>
 
       <div *ngIf="isLoading" class="message bot-message">
-        <i class="bi bi-robot"></i>
+        <img src="assets/ollieBot.png" alt="bot" class="avatar">
         <div class="text">Thinking<span class="dots">...</span></div>
       </div>
     </div>

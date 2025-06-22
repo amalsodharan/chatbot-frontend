@@ -1,0 +1,216 @@
+<!-- Wrapper that takes full height -->
+<div class="d-flex flex-column min-vh-100 bg-light">
+  <nav class="w-100 d-flex justify-content-between px-5 py-3 align-items-center bg-white">
+    <div class="d-flex align-items-center gap-1">
+      <div class="d-flex justify-content-center align-items-center" style="width: 40px; height: 40px;">
+        <img src="assets/ollieBot.png" alt="logo" style="width: 40px;">
+      </div>
+      <span class="fw-bold" style="font-size: 18px;">ollieBot.ai</span>
+    </div>
+    <ul class="nav gap-4">
+      <li class="nav-item"><span class="nav-link home-list" [ngClass]="{'text-primary fw-semibold': activeTab === 'home'}" (click)="switchTab('home')">Home</span></li>
+      <li class="nav-item"><span class="nav-link home-list" [ngClass]="{'text-primary fw-semibold': activeTab === 'features'}" (click)="switchTab('features')">Features</span></li>
+      <li class="nav-item"><span class="nav-link home-list" [ngClass]="{'text-primary fw-semibold': activeTab === 'pricing'}" (click)="switchTab('pricing')">Pricing</span></li>
+      <li class="nav-item"><span class="nav-link home-list" [ngClass]="{'text-primary fw-semibold': activeTab === 'about'}" (click)="switchTab('about')">About Us</span></li>
+    </ul>
+
+    <button class="btn btn-dark">Sign Up</button>
+  </nav>
+
+  <!-- Home Tab -->
+  <div *ngIf="activeTab === 'home'" class="flex-grow-1 d-flex flex-column justify-content-center align-items-center text-center px-3">
+    <div class="alert alert-light border border-primary d-inline-block px-4 py-2 mb-3 text-primary fw-medium">
+      Wazzup! We launched our Beta!
+    </div>
+    <h1 class="display-5 fw-bold">
+      The <span class="text-primary">intelligent</span> chat assistant
+    </h1>
+    <p class="mt-3 text-muted fs-5">
+      Experience fast, personalized, and secure conversations with our AI-driven chat assistant <br>
+      designed for work, personal tasks, and beyond.
+    </p>
+    <button class="btn btn-primary btn-lg mt-4" (click)="startChat()">Start ollieBot.ai for Free</button>
+  </div>
+
+  <!-- Features Tab -->
+  <div *ngIf="activeTab === 'features'" class="flex-grow-1 d-flex flex-column justify-content-center align-items-center text-center px-3">
+    <div class="container py-5">
+      <div class="text-center mb-5">
+        <h2 class="fw-bold">Features</h2>
+        <p class="text-muted fs-5">
+          Explore the powerful capabilities of ollieBot.ai — from intelligent conversations to seamless integrations.
+          Whether you need round-the-clock support, multilingual responses, or custom workflows, our features are built
+          to help you connect, automate, and grow smarter.
+        </p>
+      </div>
+
+      <div class="row g-4">
+        <!-- Feature Card -->
+        <div class="col-md-4" *ngFor="let feature of features">
+          <div class="card h-100 shadow-sm border-0 text-center p-4">
+            <h5 class="fw-bold mb-2">{{ feature.title }}</h5>
+            <p class="text-muted mb-3">{{ feature.description }}</p>
+            <a href="#" class="text-primary fw-semibold text-decoration-none mb-3 d-inline-block">Explore →</a>
+            <img [src]="feature.image" alt="{{ feature.title }}" class="img-fluid mt-auto mx-auto d-block" style="max-height: 150px; object-fit: contain;">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pricing Tab -->
+  <div *ngIf="activeTab === 'pricing'" class="flex-grow-1 d-flex flex-column justify-content-center align-items-center text-center px-3">
+    <div class="container py-5 position-relative">
+      <div class="position-absolute top-0 start-0 w-100 h-100" style="backdrop-filter: blur(2px); z-index: 10;"></div>
+
+      <div class="position-absolute top-50 start-50 translate-middle" style="z-index: 11;">
+        <button class="btn btn-light rounded-circle shadow p-3" style="width: 70px; " disabled>
+          <i class="bi bi-lock-fill fs-4 text-primary"></i>
+        </button>
+      </div>
+
+      <h2 class="text-center fw-bold mb-3">Pick your perfect plan</h2>
+      <p class="text-center text-muted mb-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+
+      <div class="row justify-content-center g-4">
+        <!-- Basic Plan -->
+        <div class="col-md-4">
+          <div class="card shadow-sm text-center p-4 h-100">
+            <h4 class="fw-bold">Basic</h4>
+            <div class="price-tag bg-light text-primary rounded-pill px-3 py-2 d-inline-block fw-bold mt-2 mb-3">
+              $199 <small class="text-muted">Per Month</small>
+            </div>
+            <ul class="list-unstyled fs-6 text-start mx-auto" style="max-width: 220px;">
+              <li>✅ 5 Products</li>
+              <li>✅ Up to 1,000 Subscribers</li>
+              <li>✅ Basic Analytics</li>
+              <li>✅ 48-hour</li>
+              <li>❌ Marketing Automation</li>
+              <li>❌ Custom Reporting</li>
+            </ul>
+            <button class="btn btn-outline-primary mt-3" disabled>Continue</button>
+          </div>
+        </div>
+
+        <!-- Elite Plan -->
+        <div class="col-md-4">
+          <div class="card shadow text-center p-4 h-100" style="background-color: #5f48f9; color: white;">
+            <h4 class="fw-bold">Elite</h4>
+            <div class="price-tag bg-white text-primary rounded-pill px-3 py-2 d-inline-block fw-bold mt-2 mb-3">
+              $299 <small class="text-muted">Per Month</small>
+            </div>
+            <ul class="list-unstyled fs-6 text-start mx-auto text-white" style="max-width: 220px;">
+              <li>✅ 5 Products</li>
+              <li>✅ Up to 1,000 Subscribers</li>
+              <li>✅ Basic Analytics</li>
+              <li>✅ 48-hour</li>
+              <li>❌ Marketing Automation</li>
+              <li>❌ Custom Reporting</li>
+            </ul>
+            <button class="btn btn-light mt-3" disabled>Continue</button>
+          </div>
+        </div>
+
+        <!-- Pro Plan -->
+        <div class="col-md-4">
+          <div class="card shadow-sm text-center p-4 h-100">
+            <h4 class="fw-bold">Pro</h4>
+            <div class="price-tag bg-light text-primary rounded-pill px-3 py-2 d-inline-block fw-bold mt-2 mb-3">
+              $399 <small class="text-muted">Per Month</small>
+            </div>
+            <ul class="list-unstyled fs-6 text-start mx-auto" style="max-width: 220px;">
+              <li>✅ 5 Products</li>
+              <li>✅ Up to 1,000 Subscribers</li>
+              <li>✅ Basic Analytics</li>
+              <li>✅ 48-hour</li>
+              <li>✅ Marketing Automation</li>
+              <li>✅ Custom Reporting</li>
+            </ul>
+            <button class="btn btn-outline-primary mt-3" disabled>Continue</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- About Us Tab -->
+  <div *ngIf="activeTab === 'about'" class="flex-grow-1 d-flex flex-column justify-content-center align-items-center text-center px-3">
+    <div class="container py-5">
+      <div class="text-center mb-5">
+        <h2 class="fw-bold display-6">Our Story</h2>
+        <p class="text-muted fs-5 mx-auto" style="max-width: 750px;">
+          ollieBot.ai is the collaboration hub that brings the right people, information,
+          and tools together to get work done. From startups to enterprises, thousands
+          of teams use ollieBot.ai to communicate, organize tasks, and connect workflows
+          — helping drive their business forward.
+        </p>
+      </div>
+
+      <div class="row align-items-center g-4">
+        <div class="col-md-6">
+          <img src="assets/about-1.jpg" alt="About ollieBot" class="img-fluid rounded shadow-sm">
+        </div>
+        <div class="col-md-6">
+          <div class="row text-center">
+            <div class="col-6 mb-4">
+              <h3 class="fw-bold">12M</h3>
+              <p class="text-muted mb-0">Daily Active Users</p>
+            </div>
+            <div class="col-6 mb-4">
+              <h3 class="fw-bold">100K</h3>
+              <p class="text-muted mb-0">Paid Customers</p>
+            </div>
+            <div class="col-6">
+              <h3 class="fw-bold">31M+</h3>
+              <p class="text-muted mb-0">Messages Processed</p>
+            </div>
+            <div class="col-6">
+              <h3 class="fw-bold">24/7</h3>
+              <p class="text-muted mb-0">Support</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <hr class="my-5">
+
+      <div class="row align-items-center g-4">
+        <div class="col-md-6 order-md-2">
+          <img src="assets/about-2.jpg" alt="Our Team" class="img-fluid rounded shadow-sm">
+        </div>
+        <div class="col-md-6 order-md-1">
+          <h4 class="fw-bold">Building Smarter Conversations</h4>
+          <p class="text-muted fs-6">
+            Our mission is to empower users with seamless, AI-enhanced interactions. Whether you're automating responses or managing customer queries, ollieBot.ai is designed to adapt and scale with your needs.
+          </p>
+          <p class="text-muted fs-6">
+            Built by passionate developers, including <strong>Amal S</strong>, ollieBot.ai aims to bring the power of natural language AI to everyone — from freelancers to Fortune 500 teams.
+          </p>
+        </div>
+      </div>
+
+      <hr class="my-5">
+
+      <div class="text-center py-4">
+        <h4 class="fw-bold mb-3">Connect with Us</h4>
+        <p class="text-muted mb-4">Follow ollieBot.ai on your favorite platforms or visit our website.</p>
+        
+        <div class="d-flex justify-content-center gap-4 fs-4">
+          <a href="https://twitter.com" target="_blank" class="text-primary"><i class="bi bi-twitter"></i></a>
+          <a href="https://facebook.com" target="_blank" class="text-primary"><i class="bi bi-facebook"></i></a>
+          <a href="https://pinterest.com" target="_blank" class="text-primary"><i class="bi bi-pinterest"></i></a>
+          <a href="https://instagram.com" target="_blank" class="text-primary"><i class="bi bi-instagram"></i></a>
+          <a href="https://tumblr.com" target="_blank" class="text-primary"><i class="bi bi-tumblr"></i></a>
+          <a href="https://snapchat.com" target="_blank" class="text-primary"><i class="bi bi-snapchat"></i></a>
+          <a href="https://youtube.com" target="_blank" class="text-primary"><i class="bi bi-youtube"></i></a>
+          <a href="https://vimeo.com" target="_blank" class="text-primary"><i class="bi bi-vimeo"></i></a>
+          <a href="https://olliebot.ai" target="_blank" class="text-primary"><i class="bi bi-globe"></i></a> <!-- Website icon -->
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+
+</div>
