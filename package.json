@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "build": "ng build --configuration production",
-    "start": "npx http-server dist/chatbot -p $PORT",
+    "build:ssr": "ng build --configuration production && ng run chatbot:server",
+    "start": "node dist/chatbot/server/server.mjs",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
