@@ -47,7 +47,7 @@ export class Chat implements AfterViewInit {
     this.scrollToBottom();
     this.cdr.detectChanges();
 
-    this.http.post<{ answer: string }>('http://localhost:8080/prompt', { input })
+    this.http.post<{ answer: string }>('https://olliebot-ai.onrender.com/prompt', { input })
       .subscribe({
         next: (res) => {
           this.defaultScreen = false;
