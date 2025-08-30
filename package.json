@@ -3,11 +3,10 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "build:ssr": "ng build --configuration production && ng run chatbot:server",
-    "start": "node dist/chatbot/server/server.mjs",
+    "build": "ng build --configuration production",
+    "start": "npx http-server dist/chatbot -p $PORT",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test",
-    "serve:ssr:chatbot": "node dist/chatbot/server/server.mjs"
+    "test": "ng test"
   },
   "private": true,
   "dependencies": {
