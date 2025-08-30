@@ -2,11 +2,10 @@
   "name": "chatbot",
   "version": "0.0.0",
   "scripts": {
-    "build:ssr": "npm run build:client-and-server-bundles",
-    "build:client-and-server-bundles": "node_modules/.bin/ng build --configuration production && node_modules/.bin/ng run chatbot:server",
+    "build:ssr": "ng build --configuration production && ng run chatbot:server",
     "serve:ssr": "node dist/chatbot/server/main.js",
-    "watch": "node_modules/.bin/ng build --watch --configuration development",
-    "test": "node_modules/.bin/ng test"
+    "watch": "ng build --watch --configuration development",
+    "test": "ng test"
   },
   "private": true,
   "dependencies": {
@@ -27,7 +26,7 @@
   },
   "devDependencies": {
     "@angular/build": "^20.0.3",
-    "@angular/cli": "^20.0.3",
+    "@angular/cli": "^20.2.1",
     "@angular/compiler-cli": "^20.0.0",
     "@types/express": "^5.0.1",
     "@types/jasmine": "~5.1.0",
