@@ -14,3 +14,84 @@
 .home-list{
   cursor: pointer;
 }
+
+/* 📱 Mobile Responsive Tweaks */
+@media (max-width: 992px) {
+  nav ul.nav {
+    gap: 1rem;
+  }
+  nav .btn {
+    padding: 0.4rem 1rem;
+    font-size: 0.9rem;
+  }
+  .display-5 {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Navbar stack */
+  nav {
+    flex-wrap: wrap;
+    padding: 1rem 1.25rem;
+  }
+
+  nav ul.nav {
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 100%;
+    margin-top: 1rem;
+  }
+
+  nav .btn {
+    margin-top: 0.75rem;
+    width: 100%;
+  }
+
+  .display-5 {
+    font-size: 1.75rem;
+  }
+
+  .fs-5 {
+    font-size: 1rem !important;
+  }
+
+  .card {
+    padding: 1.25rem !important;
+  }
+}
+
+@media (max-width: 576px) {
+  nav span.fw-bold {
+    font-size: 1rem;
+  }
+
+  .display-5 {
+    font-size: 1.4rem;
+  }
+
+  .fw-bold.display-6 {
+    font-size: 1.3rem;
+  }
+
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .card {
+    padding: 1rem !important;
+  }
+
+  .fs-5 {
+    font-size: 0.9rem !important;
+  }
+
+  .fs-6 {
+    font-size: 0.85rem !important;
+  }
+
+  .row.g-4 {
+    row-gap: 1rem;
+  }
+}

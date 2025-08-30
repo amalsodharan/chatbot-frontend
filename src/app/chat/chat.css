@@ -155,3 +155,73 @@ body {
   66% { content: '..'; }
   100% { content: '...'; }
 }
+
+/* 📱 Mobile Responsive */
+@media (max-width: 768px) {
+  .outer-div {
+    height: 100vh; /* fit screen height on mobile */
+    padding: 1rem;
+    margin: 0.5rem;
+    border-radius: 16px;
+  }
+
+  .chat-title {
+    font-size: 1rem;
+  }
+
+  .chat-subtitle {
+    font-size: 0.8rem;
+  }
+
+  .chat-messages {
+    gap: 0.75rem;
+    padding-right: 0.25rem;
+  }
+
+  .message {
+    max-width: 90%; /* allow more space for text */
+  }
+
+  .avatar {
+    width: 32px;
+  }
+
+  .text {
+    font-size: 0.85rem;
+    padding: 0.6rem 0.9rem;
+  }
+
+  .chat-input input {
+    font-size: 0.9rem;
+    padding: 0.6rem 0.8rem;
+  }
+
+  .send-btn {
+    width: 36px;
+    height: 36px;
+    font-size: 1rem;
+  }
+
+  .back-btn {
+    width: 36px;
+    height: 36px;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .outer-div {
+    padding: 0.75rem;
+    margin: 0.25rem;
+  }
+
+  .chat-title {
+    font-size: 0.9rem;
+  }
+
+  .chat-subtitle {
+    font-size: 0.75rem;
+  }
+
+  .message {
+    max-width: 95%; /* use almost full width */
