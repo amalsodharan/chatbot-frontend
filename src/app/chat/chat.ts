@@ -20,6 +20,7 @@ interface Message {
 export class Chat implements AfterViewInit {
   messages: Message[] = [];
   userInput: string = '';
+  chatCount: number = 0;
   isLoading: boolean = false;
   defaultScreen: boolean = true;
 
@@ -28,8 +29,9 @@ export class Chat implements AfterViewInit {
   constructor(
     private http: HttpClient,
     private cdr: ChangeDetectorRef,
-    private zone: NgZone,
-    private router: Router
+    private zone: NgZone, 
+    private router: Router,
+    private ngZone: NgZone
   ) {}
 
   ngAfterViewInit() {
@@ -37,9 +39,14 @@ export class Chat implements AfterViewInit {
   }
 
   sendMessage() {
-    const input = this.userInput.trim();
+    let input = this.userInput.trim();
     if (!input) return;
+    let chatStatus = 'SaveChat';
 
+    this.chatCount++;
+    if (this.chatCount === 1) {
+      chatStatus = 'Started';
+    }
     this.messages.push({ sender: 'user', text: input });
     this.userInput = '';
     this.isLoading = true;
@@ -47,23 +54,25 @@ export class Chat implements AfterViewInit {
     this.scrollToBottom();
     this.cdr.detectChanges();
 
-    this.http.post<{ answer: string }>('https://olliebot-ai.onrender.com/prompt', { input })
-      .subscribe({
-        next: (res) => {
-          this.defaultScreen = false;
-          this.messages.push({ sender: 'bot', text: res.answer });
-          this.isLoading = false;
-          this.cdr.detectChanges();
-          this.scrollToBottom();
-        },
-        error: () => {
-          this.defaultScreen = false;
-          this.messages.push({ sender: 'bot', text: "Oops! Something went wrong." });
-          this.isLoading = false;
-          this.cdr.detectChanges();
-          this.scrollToBottom();
-        }
-      });
+      this.http.post<{ answer: string }>('https://olliebot-ai.onrender.com/prompt', { input, chatStatus })
+        .subscribe({
+          next: (res) => {
+            this.defaultScreen = false;
+            this.messages = [...this.messages, { sender: 'bot', text: res.answer }];
+            this.isLoading = false;
+            this.cdr.markForCheck();  // forces UI refresh if OnPush
+            setTimeout(() => this.scrollToBottom(), 50); // let DOM update first
+          },
+          error: () => {
+            this.defaultScreen = false;
+            this.messages = [...this.messages, { sender: 'bot', text: "Oops! Something went wrong." }];
+            this.isLoading = false;
+            this.cdr.markForCheck();
+            setTimeout(() => this.scrollToBottom(), 50);
+          }
+        });
+
+
   }
 
   private scrollToBottom(): void {
